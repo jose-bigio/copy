@@ -58,3 +58,5 @@ copy --from=release /bin/ /bin/
 entrypoint ["ash"]
 
 from release-${TARGETOS}-${TARGETARCH} AS release
+arg TARGETOS
+arg TARGETARCH

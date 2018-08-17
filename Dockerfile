@@ -8,7 +8,7 @@ run go build -o /copy -ldflags '-s -w' github.com/tonistiigi/copy/cmd/copy
 
 from ${UPX_IMG} AS upx
 copy --from=main /copy /copy
-run ["upx", "/copy"]
+run upx /copy
 
 from alpine AS wget
 workdir /out

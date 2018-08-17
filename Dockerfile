@@ -1,10 +1,12 @@
+arg UPX_IMG=gruebel/upx
+
 from golang:1.10-alpine AS main
 workdir /go/src/github.com/tonistiigi/copy
 copy . .
 env CGO_ENABLED=0
 run go build -o /copy -ldflags '-s -w' github.com/tonistiigi/copy/cmd/copy
 
-from gruebel/upx AS upx
+from ${UPX_IMG} AS upx
 copy --from=main /copy /copy
 run ["upx", "/copy"]
 

@@ -34,7 +34,7 @@ from wget AS xz
 run wget http://s.minos.io/archive/bifrost/x86_64/xz-5.0.3-1.tar.gz
 run tar xvf xz-5.0.3-1.tar.gz  -C /out
 
-from scratch AS release-linux-amd64
+from scratch AS release-linux-x86_64
 copy --from=upx /copy /bin/
 # copy --from=cp /bin/cp /bin/
 copy --from=tar /out/bin /bin/
@@ -48,8 +48,8 @@ run apk add -U --no-cache tar gzip bzip2 xz && mv /usr/bin/bz* /bin/
 copy --from=upx /copy /bin/
 entrypoint ["/bin/copy"]
 
-from release-alt AS release-linux-arm64
-from release-alt AS release-linux-arm
+from release-alt AS release-linux-aarch64
+from release-alt AS release-linux-armv7l
 from release-alt AS release-linux-s390x
 from release-alt AS release-linux-ppc64le
 
